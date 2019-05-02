@@ -74,7 +74,7 @@ class ModelExtensionModuleColors extends Model {
         $color_alternative = $colors['color_alternative'];
         $color_titles = $colors['color_titles'];
         
-        $defaultLightenColorBrightness = 1.1;
+        $defaultLightenColorBrightness = 1.12;
         $defaultDarkenColorBrightness = 0.8;
 
         $color_primary_lighten = $this->changeColorBrightness($color_primary, $defaultLightenColorBrightness);
@@ -115,11 +115,23 @@ class ModelExtensionModuleColors extends Model {
                 background-color: $color_primary;
                 background-image: linear-gradient(to bottom, $color_primary_lighten, $color_primary_variant_lighten);
             }
+            .btn-inverse {
+                background-color: $color_alternative;
+                background-image: linear-gradient(to bottom, $color_alternative, $color_alternative_darken);
+                border-color: $color_edges_darken;
+                color: $color_text_secondary;
+                box-shadow: 0 1px 4px $color_edges;
+            }
+            .btn-inverse:hover {
+                background-color: $color_alternative;
+                background-image: linear-gradient(to bottom, $color_alternative_darken, $color_alternative_lighten);
+                border-color: $color_edges_darken;
+            }
             #cart > .btn {
                 color: $color_text_primary;
             }
             #cart.open > .btn {
-                color: $color_titles;
+                color: $color_titles_lighten;
             }
             #cart.open > .btn:hover {
                 color: $color_titles_darken;
@@ -144,8 +156,7 @@ class ModelExtensionModuleColors extends Model {
             }
             #menu .btn-navbar:hover, #menu .btn-navbar:focus {
                 background-color: $color_primary_lighten;
-                background-image: linear-gradient(to bottom, $color_primary_lighten, $color_primary_lighten);
-                color: $color_text_primary_darken;
+                background-image: linear-gradient(to bottom, $color_primary_darken, $color_primary_darken);
             }   
             #menu .nav > li > a {
                 color: $color_text_primary;
@@ -157,13 +168,14 @@ class ModelExtensionModuleColors extends Model {
                 color: $color_text_primary;
             }
             #menu .dropdown-inner a {
-                color: $color_titles;
+                color: $color_titles !important;
             }
             .dropdown-menu {
                 border-color: $color_edges;
                 background: $color_surface_secondary;
             }
             .dropdown-menu li > a:hover {
+                color: $color_text_primary;
                 background-color: $color_primary;
                 background-image: linear-gradient(to bottom, $color_primary, $color_primary_variant);
             }
@@ -186,7 +198,7 @@ class ModelExtensionModuleColors extends Model {
             }
             .btn-primary:hover, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
                 background-color: $color_primary_lighten;
-                background-image: linear-gradient(to bottom, $color_primary_lighten, $color_primary_variant_lighten);
+                background-image: linear-gradient(to bottom, $color_primary_darken, $color_primary_variant_lighten);
                 border-color: $color_edges_darken;
                 background-position: 0 -0;
             }
@@ -245,18 +257,6 @@ class ModelExtensionModuleColors extends Model {
             hr {
                 border-color: $color_edges;
             }
-            .btn-inverse {
-                background-color: $color_alternative;
-                background-image: linear-gradient(to bottom, $color_alternative, $color_alternative_darken);
-                border-color: $color_edges_darken;
-                color: $color_text_secondary;
-                box-shadow: 0 1px 4px $color_edges;
-            }
-            .btn-inverse:hover {
-                background-color: $color_alternative;
-                background-image: linear-gradient(to bottom, $color_alternative_darken, $color_alternative_lighten);
-                border-color: $color_edges_darken;
-            }
             .product-thumb {
                 border-radius: 4px;
                 background-color: $color_surface_secondary;
@@ -269,7 +269,11 @@ class ModelExtensionModuleColors extends Model {
                 background-color: white;
             }
             .product-thumb .price {
-                color: $color_text_secondary_darken;
+                color: $color_titles_darken;
+            }
+            .product-thumb .price-tax, .product-thumb .price-old {
+                color: $color_paragraphs_lighten;
+                opacity: 0.7;
             }
             .product-thumb .button-group button {
                 color: $color_text_secondary;
@@ -337,9 +341,9 @@ class ModelExtensionModuleColors extends Model {
             h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
                 color: $color_titles;
             }
-            a {
-                color: $color_primary_lighten;
-            }  
+            a, .caption h1, .caption h2, .caption h3, .caption h4, .caption h5, .caption h6, .caption h1 a, .caption h2 a, .caption h3 a, .caption h4 a, .caption h5 a, .caption h6 a {
+                color: $color_primary;
+            }
             a:focus, a:hover {
                 color: $color_primary_darken;
             }
@@ -352,17 +356,17 @@ class ModelExtensionModuleColors extends Model {
             #top .btn-link:hover, #top-links a:hover {
                 color: $color_text_secondary_darken;
             }
-            #top-links .dropdown-menu a:hover {
-                color: $color_text_primary;
+            #top .dropdown-menu a {
+                color: $color_titles;
+            }
+            .nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+                background-color: transparent;
             }
             .table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
                 border-color: $color_edges;
             }
             .table-responsive {
                 border-color: $color_edges;
-            }
-            .product-thumb .price-tax {
-                color: $color_paragraphs_lighten;
             }
             .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
                 border-color: $color_edges;
