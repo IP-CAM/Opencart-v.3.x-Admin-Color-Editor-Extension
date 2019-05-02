@@ -344,7 +344,7 @@ class ModelExtensionModuleColors extends Model {
             a, .caption h1, .caption h2, .caption h3, .caption h4, .caption h5, .caption h6, .caption h1 a, .caption h2 a, .caption h3 a, .caption h4 a, .caption h5 a, .caption h6 a {
                 color: $color_primary;
             }
-            a:focus, a:hover {
+            a:focus, a:hover, .caption a:focus, .caption a:hover {
                 color: $color_primary_darken;
             }
             #top {
