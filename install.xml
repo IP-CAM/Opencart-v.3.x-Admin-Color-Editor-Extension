@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+	<name>Editor de Colores</name>
+	<code>oc_color_editor_extension</code>
+	<version>1.0.0</version>
+	<author>Angel Carriola</author>
+	<link></link>
+
+    <file path="admin/controller/common/column_left.php">
+        <operation>
+        <search><![CDATA[if ($design) {]]></search>
+        <add position="before"><![CDATA[
+            if ($this->user->hasPermission('access', 'extension/module/colors')) {
+                $this->load->language('extension/module/colors');
+				$design[] = array(
+					'name'	   => $this->language->get('heading_title'),
+					'href'     => $this->url->link('extension/module/colors', 'user_token=' . $this->session->data['user_token'], true),
+					'children' => array()		
+				);
+                $this->load->language('common/column_left');
+			}
+
+        ]]></add>
+        </operation>
+    </file>
+    <file path="catalog/view/theme/default/template/common/header.twig">
+        <operation>
+        <search><![CDATA[</head>]]></search>
+        <add position="before"><![CDATA[
+            <link href="catalog/view/theme/default/stylesheet/stylesheet_colors.css" rel="stylesheet">
+        ]]></add>
+        </operation>
+    </file>
+</modification>

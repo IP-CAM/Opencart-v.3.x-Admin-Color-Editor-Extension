@@ -1,0 +1,210 @@
+{{ header }}{{ column_left }}
+<div id="content">
+    <div class="page-header">
+        <div class="container-fluid">
+            <h1>{{ heading_title }}</h1>
+            <ul class="breadcrumb">
+                {% for breadcrumb in breadcrumbs %}
+                <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+                {% endfor %}
+            </ul>
+            <div class="pull-right">
+                <button {% if module_colors_status == false %} disabled {% endif %} type="submit" form="form-colors" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+                <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        {% if error_warning %}
+        <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+        {% endif %}
+        {% if success %}
+        <div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> {{ success }}
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+        {% endif %}
+        <div class="row" style="position:relative">
+            {% if module_colors_status == false %}
+               <div style="background:rgba(50,50,50,0.8);left:0;top:0;right:0;bottom:0;position:absolute;z-index:999"><h1 style="text-align: center; margin-top:5%;color:#777;font-weight:600">Módulo Deshabilitado</h1></div>
+            {% endif %}
+            <div class="col-lg-3 col-md-4 col-sm-12">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-paint-brush"></i> {{ text_colors_panel }}</h3>
+                    </div>
+                    <div class="panel-body" style="height: 540px; overflow:auto;">
+                        <form action="" method="post" enctype="multipart/form-data" id="form-colors" class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-xs-7" for="color_primary">{{ text_color_primary }}</label>
+                                <div class="col-xs-5">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <input type="color" id="color_primary" name="color_primary" value="{{ color_primary }}" placeholder="{{ text_choose_color }}">
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <input type="color" id="color_primary_variant" name="color_primary_variant" value="{{ color_primary_variant }}" placeholder="{{ text_choose_color }}"  data-toggle="tooltip" title="{{ text_color_primary_variant }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% if error_color_primary %}
+                            <div class="text-danger">{{ error_color_primary }}</div>
+                            {% endif %}
+                            {% if error_color_primary_variant %}
+                            <div class="text-danger">{{ error_color_primary_variant }}</div>
+                            {% endif %}
+                            <div class="form-group">
+                                <label class="control-label col-xs-7" for="color_text_primary">{{ text_color_text_primary }}</label>
+                                <div class="col-xs-5">
+                                    <input type="color" id="color_text_primary" name="color_text_primary" value="{{ color_text_primary }}" placeholder="{{ text_choose_color }}">
+                                </div>
+                            </div>
+                            {% if error_color_text_primary %}
+                            <div class="text-danger">{{ error_color_text_primary }}</div>
+                            {% endif %}
+                            <div class="form-group">
+                                <label class="control-label col-xs-7" for="color_secondary">{{ text_color_secondary }}</label>
+                                <div class="col-xs-5">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <input type="color" id="color_secondary" name="color_secondary" value="{{ color_secondary }}" placeholder="{{ text_choose_color }}">
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <input type="color" id="color_secondary_variant" name="color_secondary_variant" value="{{ color_secondary_variant }}" placeholder="{{ text_choose_color }}"  data-toggle="tooltip" title="{{ text_color_secondary_variant }}">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            {% if error_color_secondary %}
+                            <div class="text-danger">{{ error_color_secondary }}</div>
+                            {% endif %}
+                            {% if error_color_secondary_variant %}
+                            <div class="text-danger">{{ error_color_secondary_variant }}</div>
+                            {% endif %}
+                            <div class="form-group">
+                                <label class="control-label col-xs-7" for="color_text_secondary">{{ text_color_text_secondary }}</label>
+                                <div class="col-xs-5">
+                                    <input type="color" id="color_text_secondary" name="color_text_secondary" value="{{ color_text_secondary }}" placeholder="{{ text_choose_color }}">
+                                </div>
+                            </div>
+                            {% if error_color_text_secondary %}
+                            <div class="text-danger">{{ error_color_text_secondary }}</div>
+                            {% endif %}
+                            <div class="form-group">
+                                <label class="control-label col-xs-7" for="color_alternative">{{ text_color_alternative }}</label>
+                                <div class="col-xs-5">
+                                    <input type="color" id="color_alternative" name="color_alternative" value="{{ color_alternative }}" placeholder="{{ text_choose_color }}">
+                                </div>
+                            </div>
+                            {% if error_color_alternative %}
+                            <div class="text-danger">{{ error_color_alternative }}</div>
+                            {% endif %}
+                            <div class="form-group">
+                                <label class="control-label col-xs-7" for="color_edges">{{ text_color_edges }}</label>
+                                <div class="col-xs-5">
+                                    <input type="color" id="color_edges" name="color_edges" value="{{ color_edges }}" placeholder="{{ text_choose_color }}">
+                                </div>
+                            </div>
+                            {% if error_color_edges %}
+                            <div class="text-danger">{{ error_color_edges }}</div>
+                            {% endif %}
+                            <div class="form-group">
+                                <label class="control-label col-xs-7" for="color_surface_primary">{{ text_color_surface_primary }}</label>
+                                <div class="col-xs-5">
+                                    <input type="color" id="color_surface_primary" name="color_surface_primary" value="{{ color_surface_primary }}" placeholder="{{ text_choose_color }}">
+                                </div>
+                            </div>
+                            {% if error_color_surface_primary %}
+                            <div class="text-danger">{{ error_color_surface_primary }}</div>
+                            {% endif %}
+                            <div class="form-group">
+                                <label class="control-label col-xs-7" for="color_surface_secondary">{{ text_color_surface_secondary }}</label>
+                                <div class="col-xs-5">
+                                    <input type="color" id="color_surface_secondary" name="color_surface_secondary" value="{{ color_surface_secondary }}" placeholder="{{ text_choose_color }}">
+                                </div>
+                            </div>
+                            {% if error_color_surface_secondary %}
+                            <div class="text-danger">{{ error_color_surface_secondary }}</div>
+                            {% endif %}
+                            <div class="form-group">
+                                <label class="control-label col-xs-7" for="color_paragraphs">{{ text_color_paragraphs }}</label>
+                                <div class="col-xs-5">
+                                    <input type="color" id="color_paragraphs" name="color_paragraphs" value="{{ color_paragraphs }}" placeholder="{{ text_choose_color }}">
+                                </div>
+                            </div>
+                            {% if error_color_paragraphs %}
+                            <div class="text-danger">{{ error_color_paragraphs }}</div>
+                            {% endif %}
+                            <div class="form-group">
+                                <label class="control-label col-xs-7" for="color_titles">{{ text_color_titles }}</label>
+                                <div class="col-xs-5">
+                                    <input type="color" id="color_titles" name="color_titles" value="{{ color_titles }}" placeholder="{{ text_choose_color }}">
+                                </div>
+                            </div>
+                            {% if error_color_titles %}
+                            <div class="text-danger">{{ error_color_titles }}</div>
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-9 col-md-8 col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-eye"></i> {{ text_viewport_panel }}</h3>
+                        </div>
+                        <div class="panel-body" style="padding: 0; height: 540px; overflow: hidden;">
+                            <iframe src="{{ storefront_url }}" style="width: 100%; height: 540px; border: none" id="storefront_viewport">
+                            </iframe>
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<style type="text/css">
+    input[type=color] {
+        height: 32px;
+        width: 32px;
+    }
+</style>
+<script>
+$(function() {
+    var storeFrontViewport = document.getElementById("storefront_viewport");
+    var stylesheetEl = document.createElement('style');
+    stylesheetEl.type = 'text/css';
+    stylesheetEl.id = 'stylesheet_colors';
+    $("input[type=color]").change(function() {
+        generateStylesheet();
+    });
+
+    function generateStylesheet() {
+        var data = $('#form-colors').serialize();
+        $.post('index.php?route=extension/module/colors/generate&user_token={{user_token}}', data, function(response) {
+            var viewportBody = storeFrontViewport.contentWindow.document.body;
+            stylesheetEl.innerHTML = response;
+            if (stylesheetEl.parentElement == viewportBody)
+                viewportBody.removeChild(stylesheetEl);
+            viewportBody.appendChild(stylesheetEl);
+        });
+    }
+    // Actualiza constantemente la hoja de estilos simulada si detecta que se ha recargado la página.
+    var currDoc = storeFrontViewport.contentWindow.document;
+    function updateOnLoad() {
+        var newDoc = storeFrontViewport.contentWindow.document;
+        if (currDoc != newDoc) {
+            currDoc = newDoc;
+            generateStylesheet();
+        }
+        setTimeout(updateOnLoad, 100);
+    }
+    updateOnLoad();
+});
+</script>
+{{ footer }}
